@@ -1,7 +1,7 @@
-/* global levels */
+import levels from './levels';
 
-const canvas = document.querySelector('canvas');
-const context = canvas.getContext('2d');
+let canvas;
+let context;
 const playerSize = 2;
 const acceleration = 240;
 const decay = 0.001;
@@ -416,10 +416,20 @@ function mousemove(event) {
   input.mouseY = (event.clientY - canvas.height / 2) * 100 / minSide;
 }
 
-nextLevel();
-resize();
-window.onresize = resize;
-window.onkeydown = keydown;
-window.onkeyup = keyup;
-window.onmousemove = mousemove;
-run(lastTime);
+window.addEventListener('load', () => {
+  canvas = document.createElement('canvas');
+  document.body.appendChild(canvas);
+  document.body.style.overflow = 'hidden';
+  document.body.style.margin = '0';
+  document.body.style.padding = '0';
+  document.body.parentNode.style.margin = '0';
+  document.body.parentNode.style.padding = '0';
+  context = canvas.getContext('2d');
+  nextLevel();
+  resize();
+  window.onresize = resize;
+  window.onkeydown = keydown;
+  window.onkeyup = keyup;
+  window.onmousemove = mousemove;
+  run(lastTime);
+});

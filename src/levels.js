@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-const levels = [
+export default [
   {
     walls: [
       [0, 4, 40, 2],
